@@ -1,0 +1,25 @@
+Remove old Open vSwtich:
+sudo apt-get remove openvswitch-common openvswitch-datapath-dkms openvswitch-controller openvswitch-pki openvswitch-switch
+
+Download the new Open vSwtich source tarball:
+mkdir openvswitch
+cd openvswitch
+wget http://openvswitch.org/releases/openvswitch-2.0.0.tar.gz
+tar zxvf openvswitch-2.0.0.tar.gz
+cd openvswitch-2.0.0
+
+Install all the dependencies that will be needed:
+sudo apt-get update
+sudo apt-get -y install build-essential fakeroot debhelper autoconf automake libssl-dev pkg-config bzip2 openssl python-all procps python-qt4 python-zopeinterface python-twisted-conch
+
+Build the Debian packages:
+DEB_BUILD_OPTIONS='parallel=2 nocheck' fakeroot debian/rules binary
+
+Install the packages:
+cd ..
+sudo dpkg -i openvswitch-common*.deb openvswitch-datapath-dkms*.deb openvswitch-controller*.deb openvswitch-pki*.deb openvswitch-switch*.deb
+
+Then do some post install steps to keep the Open vSwitch Controller from starting automatically on boot:
+sudo /etc/init.d/openvswitch-controller stop
+sudo update-rc.d openvswitch-controller disable
+sudo /etc/init.d/openvswitch-switch start
