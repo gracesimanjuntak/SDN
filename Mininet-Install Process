@@ -1,0 +1,75 @@
+ifconfig
+
+Terlihat ada dua interface yaitu eth0 dan lo (Loopback). Interface lo merupakan interface mesin itu sendiri yang default yang akan ditambahkan secara otomatis. Interface lainnya yang sudah ada adalah eth0 dengan IP 10.0.2.15
+
+Setelah itu, pastikan VM tersambung dengan internet dengan cara mengetikan command
+
+ping 8.8.8.8
+
+Gunakan kombinasi tombol Ctrl + C untuk menghentikan proses ping
+
+Untuk memulai installasi lakukan update package terlebih dahulu dengan mengetikan perintah
+
+sudo apt-get update
+
+Jika saat update terdapat pesan error semacam “W: Failed to fetch gzip:/var/lib/apt/lists/partial/us.archive.ubuntu.com_ubuntu_dists_natty_main_source_Sources Hash Sum mismatch” lihat halaman paling bawah untuk mengatasinya.
+
+Selanjutnya install aplikasi github dengan perintah
+
+sudo apt-get install git
+
+Lalu ketikan Y > Enter
+
+Setelah itu lakukan git clone atau copy source code mininet dengan command
+
+git clone git://github.com/mininet/mininet
+
+Untuk mengecek ketikan perintah
+
+ls
+
+Terlihat ada direktori mininet yang baru ditambahkan, lalu masuk kedalam direktori tersebut dengan mengetikkan perintah
+
+cd mininet
+
+Selanjutnya, untuk melihat list versi dari mininet yang dapat diinstall dapat mengetikkan perintah
+
+git tag
+
+Disini saya akan menginstall mininet versi 2.2.2 karena termasuk versi stable (mengacu pada VM All in One dari mininet)
+
+git checkout -b 2.2.2 2.2.2
+
+Lalu kembali ke direktori sebelumnya dengan mengetikan perintah
+
+cd ..
+
+Terakhir ketikkan perintah berikut untuk melakukan installasi, ada beberapa opsi pilihan untuk proses installasi, dijelaskan pada gambar dibawah
+
+Untuk saat ini kita akan melakukan full installasi pada home directory, ketikan perintah
+
+mininet/util/install.sh -a
+
+Setelah installasi selesai, lakukan pengujian sebagai berikut untuk memastikan installasi berjalan dengan baik
+============================
+sudo mn --test pingall
+
+Result: 0% dropped (2/2 recieved), dapat disimpulkan test ping berhasil
+
+============================
+Jika Result : 
+Cannot find required executable ovs-controller.
+Please make sure that it is installed and availabe in your $PATH:
+(/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin/:/bin)
+
+cara Solved : check file "Err-test ping all mininet" pada Repositori ini
+
+============================
+Cara mengatasi gagal apt-get update pesan error mirip
+
+"W: Failed to fetch gzip:/var/lib/apt/lists/partial/us.archive.ubuntu.com_ubuntu_dists_natty_main_source_Sources Hash Sum mismatch"
+
+silahkan ketikan command berikut
+
+sudo rm -rf /var/lib/apt/lists/partial
+sudo apt-get update -o Acquire::CompressionTypes::Order::=gz
