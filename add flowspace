@@ -1,0 +1,18 @@
+fvctl add-flowspace dpid1-port1 1 1 in_port=1 tenant1=7
+fvctl add-flowspace dpid1-port2 1 1 in_port=2 tenant1=7
+fvctl add-flowspace dpid1-port3 1 1 in_port=3 tenant1=7
+
+fvctl add-flowspace dpid2-port2 2 1 in_port=2 tenant2=7
+fvctl add-flowspace dpid2-port3 2 1 in_port=3 tenant2=7
+fvctl add-flowspace dpid2-port1 2 1 in_port=1 tenant2=7
+
+fvctl add-flowspace dpid3 3 1 any tenant2=7
+
+fvctl add-flowspace dpid4-port1 4 1 in_port=1 tenant1=7
+fvctl add-flowspace dpid4-port2 4 1 in_port=2 tenant2=7
+fvctl add-flowspace dpid4-port4 4 1 in_port=4 tenant2=7
+fvctl add-flowspace dpid4-port5 4 1 in_port=5 tenant1=7
+fvctl add-flowspace dpid4-port3 4 1 in_port=3 tenant1=7
+
+fvctl add-flowspace dpid5-port1 5 1 in_port=1 tenant1=7
+fvctl add-flowspace dpid5-port2 5 1 in_port=2 tenant1=7
