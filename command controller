@@ -1,3 +1,17 @@
 ./pox.py forwarding.l2_learning openflow.of_01 --port=10001
 
-$ ./pox.py forwarding.l2_learning openflow.of_01 --port=10002
+./pox.py forwarding.l2_learning openflow.of_01 --port=10002
+
+sudo mn --custom sample.py --topo mytopo
+
+sudo mn --custom sample.py --topo mytopo --link tc --controller remote --mac --arp
+
+
+TCP
+iperf -s -p 9999 -t 20 -i 5 -f m
+iperf -c 10.0.0.1 -p 9999 -t 20 -i 5 -f m
+
+
+UDP
+iperf -s -p 8888 -u -t 20 -i 5 -f m
+iperf -c 10.0.0.2 -p 8888 -b 1m -t 20 -i 5 -f m
