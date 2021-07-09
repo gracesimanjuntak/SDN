@@ -11,6 +11,8 @@ TCP
 iperf -s -p 9999 -t 20 -i 5 -f m
 iperf -c 10.0.0.1 -p 9999 -t 20 -i 5 -f m
 
+iper3 -s -i 10
+iperf3 -c 10.0.0.1 -b 10M -V
 
 UDP
 iperf -s -p 8888 -u -t 20 -i 5 -f m
