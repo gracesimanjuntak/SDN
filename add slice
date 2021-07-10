@@ -1,0 +1,4 @@
+fvctl add-slice tenant1 tcp:localhost:10001 admin@tenant1slice 
+fvctl add-slice tenant2 tcp:localhost:10002 admin@tenant2slice 
+
+fvctl list-slices
