@@ -16,8 +16,6 @@ class MyTopo( Topo ):
 
         hconfig = {'inNameSpace':True}
         host_link_config = {}
-#       http_link_config = {'bw': 10}
-#	video_link_config = {'bw': 1000}
        
 
         # Create switch nodes
@@ -33,8 +31,7 @@ class MyTopo( Topo ):
         self.addLink('s1', 's4')#, **http_link_config)
         self.addLink('s2', 's3')#, **http_link_config)
         self.addLink('s3', 's4')#, **http_link_config)
-        self.addLink('s4', 's5')#, **video_link_config)
-        #self.addLink('s4', 's6', **video_link_config)
+        self.addLink('s4', 's5')#, **http_link_config)
 
 
 	 # Add links
@@ -45,8 +42,5 @@ class MyTopo( Topo ):
         self.addLink( 'h5', 's4', **host_link_config)
         self.addLink( 'h6', 's4', **host_link_config)
         self.addLink( 'h7', 's5', **host_link_config)
-        #self.addLink( 'h8', 's5', **host_link_config)
-        #self.addLink( 'h9', 's6', **host_link_config)
-	#self.addLink( 'h10', 's6', **host_link_config)
 
 topos = { 'mytopo': ( lambda: MyTopo() ) }
